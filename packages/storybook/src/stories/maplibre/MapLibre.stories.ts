@@ -65,3 +65,6 @@ export const SelectWithResizable = AllStories.SelectWithResizable;
 export const ProgrammaticRotate = AllStories.ProgrammaticRotate;
 export const ProgrammaticScale = AllStories.ProgrammaticScale;
 export const ProgrammaticUpdate = AllStories.ProgrammaticUpdate;
+export const MultiTouchFreehand = AllStories.MultiTouchFreehand;
+export const MultiTouchFreehandDrag = AllStories.MultiTouchFreehandDrag;
+export const MultiTouchSelectDrag = AllStories.MultiTouchSelectDrag;

@@ -918,6 +918,66 @@ const SelectWithMultipleOfSameModes: Story = {
 	},
 };
 
+// Multi-touch freehand drawing story (click-move)
+const MultiTouchFreehand: Story = {
+	...DefaultStory,
+	args: {
+		id: "multi-touch-freehand",
+		modes: [
+			() => new TerraDrawFreehandMode(),
+			() => new TerraDrawFreehandLineStringMode(),
+		],
+		instructions:
+			"Touch test: 1-finger draw, 2-finger pinch/pan (drawing pauses), lift 2nd finger to resume. Try both Freehand and Freehand Linestring modes.",
+		...DefaultStory.args,
+	},
+};
+
+// Multi-touch freehand drag drawing story
+const MultiTouchFreehandDrag: Story = {
+	...DefaultStory,
+	args: {
+		id: "multi-touch-freehand-drag",
+		modes: [
+			() =>
+				new TerraDrawFreehandMode({
+					drawInteraction: "click-drag",
+				}),
+		],
+		instructions:
+			"Touch test (drag mode): 1-finger drag to draw polygon, 2-finger gesture pauses drawing and should NOT close the polygon, lift 2nd finger to resume.",
+		...DefaultStory.args,
+	},
+};
+
+// Multi-touch select mode drag story
+const MultiTouchSelectDrag: Story = {
+	...DefaultStory,
+	args: {
+		id: "multi-touch-select-drag",
+		modes: [
+			() => new TerraDrawPolygonMode(),
+			() =>
+				new TerraDrawSelectMode({
+					flags: {
+						polygon: {
+							feature: {
+								draggable: true,
+								coordinates: {
+									draggable: true,
+									midpoints: true,
+								},
+							},
+						},
+					},
+				}),
+		],
+		instructions:
+			"Touch test: Draw a polygon, switch to Select, drag it with 1 finger. 2-finger pan/zoom should pause drag (not finalize). Lift 2nd finger, start new drag.",
+		...DefaultStory.args,
+	},
+};
+
 const AllStories = {
 	Point,
 	MarkerPNG,
@@ -961,6 +1021,9 @@ const AllStories = {
 	SelectWithMultiSelect,
 	SelectWithMultipleOfSameModes,
 	SelectWithMultipleSelectModes,
+	MultiTouchFreehand,
+	MultiTouchFreehandDrag,
+	MultiTouchSelectDrag,
 };
 
 export { AllStories };
